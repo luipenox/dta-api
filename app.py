@@ -21,11 +21,18 @@ def contact():
 
 introduction = st.Page(
     "chapters/introduction.py",
-    title="Úvod do SQL",
+    title="Úvod do API",
     icon=":material/counter_0:")
 
+json = st.Page(
+    "chapters/json.py",
+    title="JavaScript Object Notation",
+    icon=":material/counter_1:")
+
+
 page_dict = {'Kapitoly': [
-    introduction
+    introduction,
+    json
 ]}
 
 home_page = st.Page(home, title="O kurzu", icon=":material/info:")

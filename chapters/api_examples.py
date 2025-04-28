@@ -29,16 +29,6 @@ st.code("""
 "https://restcountries.com/v3.1/region/europe"
 """)
 
-# Citáty
-st.subheader("Quotable")
-st.code("""
-# Náhodný citát
-"https://api.quotable.io/random"
-
-# Seznam autorů
-"https://api.quotable.io/authors"
-""")
-
 st.header("2. API pro vývojáře")
 
 # GitHub

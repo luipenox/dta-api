@@ -1,35 +1,24 @@
 import streamlit as st
 
-st.title("API - Aplikační programové rozhraní")
+st.title("Úvod do API")
 
 st.header("Co je API?")
 st.write("""
 API (Application Programming Interface) je sada standardizovaných pravidel a protokolů, které umožňují různým softwarovým 
-aplikacím vzájemně komunikovat [[1]](https://www.redhat.com/en/topics/api/what-is-a-rest-api). 
+aplikacím vzájemně komunikovat. 
 
-Představte si API jako číšníka v restauraci:
+**Představte si API jako číšníka v restauraci**:
 - Vy (klient) si objednáváte jídlo
 - Číšník (API) přijme vaši objednávku
 - Předá ji do kuchyně (server)
 - A přinese vám hotové jídlo zpět
 """)
 
-st.header("Typy API")
+st.header("REST API")
 st.write("""
-1. **REST API**
    - Nejrozšířenější typ API
-   - Používá HTTP metody (GET, POST, PUT, DELETE)
+   - Používá HTTP metody (GET, POST, PUT, PATCH, DELETE)
    - Jednoduchá a standardizovaná komunikace
-
-2. **SOAP API**
-   - Starší, ale stále používaný protokol
-   - Složitější než REST
-   - Vysoká bezpečnost
-
-3. **GraphQL**
-   - Moderní přístup k API
-   - Klient si přesně určuje, jaká data chce získat
-   - Používají ho společnosti jako GitHub, Shopify nebo The New York Times [[2]](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/)
 """)
 
 st.header("Jak API funguje?")
@@ -46,50 +35,213 @@ st.write("""
 3. **Odpověď (Response)**
    - Server pošle zpět odpověď
    - Obvykle ve formátu JSON nebo XML
-   - Obsahuje stavový kód (např. 200 pro úspěch)
+   - Obsahuje stavový kód HTTP (např. 200 pro úspěch)
 """)
 
 st.header("Příklady využití API")
 st.write("""
-- Platební brány
-- Sociální sítě (sdílení obsahu)
-- Předpověď počasí
-- Mapové služby
-- Rezervační systémy
-- Streamovací služby
+# Příklady využití REST API
+
+### 1. Sociální sítě
+- **Správa obsahu**
+  - Získávání příspěvků a komentářů
+  - Publikování nového obsahu
+  - Správa profilů
+- **Interakce**
+  - Lajkování
+  - Sdílení
+  - Komentování
+
+### 2. E-commerce
+- **Produktový management**
+  - Správa katalogu
+  - Aktualizace cen
+  - Správa skladových zásob
+- **Objednávky**
+  - Vytváření objednávek
+  - Sledování stavu
+  - Správa plateb
+
+### 3. Finanční služby
+- **Bankovnictví**
+  - Platební transakce
+  - Kontrola zůstatku
+  - Historie transakcí
+- **Investice**
+  - Kurzovní data
+  - Správa portfolia
+  - Obchodování s akciemi
+
+### 4. Geolokační služby
+- **Mapy**
+  - Vyhledávání míst
+  - Navigace
+  - Výpočet tras
+- **Počasí**
+  - Aktuální počasí
+  - Předpověď
+  - Meteorologická data
+
+### 5. IoT (Internet věcí)
+- **Správa zařízení**
+  - Monitoring stavu
+  - Ovládání zařízení
+  - Aktualizace firmware
+- **Data**
+  - Sběr dat ze senzorů
+  - Analýza dat
+  - Reporting
+
+### 6. Streamovací služby
+- **Obsah**
+  - Katalog médií
+  - Správa playlistů
+  - Doporučení
+- **Uživatelé**
+  - Historie sledování
+  - Hodnocení
+  - Preference
+
+### 7. Rezervační systémy
+- **Ubytování**
+  - Dostupnost pokojů
+  - Rezervace
+  - Správa pobytů
+- **Doprava**
+  - Letecké rezervace
+  - Jízdenky
+  - Pronájem vozidel
+
+### 8. Mobilní aplikace
+- **Uživatelé**
+  - Registrace
+  - Autentizace
+  - Správa profilů
+- **Data**
+  - Synchronizace
+  - Push notifikace
+  - Zálohování
+
+### 9. Cloud computing
+- **Infrastruktura**
+  - Správa serverů
+  - Monitoring služeb
+  - Škálování
+- **Storage**
+  - Ukládání souborů
+  - Zálohování
+  - Sdílení dat
+
+### 10. CMS systémy
+- **Obsah**
+  - Publikování článků
+  - Správa médií
+  - Kategorizace
+- **Interakce**
+  - Komentáře
+  - Hodnocení
+  - SEO nástroje
 """)
 
 st.header("Výhody používání API")
 st.write("""
-✅ Znovupoužitelnost kódu
-✅ Standardizace
-✅ Bezpečnost
-✅ Škálovatelnost
-✅ Flexibilita
-✅ Efektivita vývoje
-""")
+### 1. Standardizace
+- **Jednotné rozhraní**
+  - Konzistentní způsob komunikace
+  - Předvídatelné chování
+  - Snadná integrace
+- **Dokumentace**
+  - Jasně definované endpointy
+  - Popis parametrů a odpovědí
+  - Příklady použití
 
-st.header("Nejlepší praktiky při práci s API")
-st.write("""
-1. **Dokumentace**
-   - Vždy čtěte a udržujte aktuální dokumentaci
+### 2. Bezpečnost
+- **Řízení přístupu**
+  - Autentizace uživatelů
+  - Autorizace požadavků
+  - API klíče a tokeny
+- **Ochrana dat**
+  - Šifrování komunikace
+  - Validace vstupů
+  - Rate limiting
 
-2. **Zabezpečení**
-   - Používejte autentizaci a autorizaci
-   - Šifrujte citlivá data
+### 3. Škálovatelnost
+- **Výkon**
+  - Rozdělení zátěže
+  - Cachování
+  - Optimalizace dotazů
+- **Flexibilita**
+  - Horizontální škálování
+  - Load balancing
+  - Mikroslužby architektura
 
-3. **Verzování**
-   - Udržujte kompatibilitu se staršími verzemi
+### 4. Efektivita vývoje
+- **Znovupoužitelnost**
+  - Sdílení funkcionalit
+  - Modulární přístup
+  - Oddělení zodpovědností
+- **Údržba**
+  - Snadné aktualizace
+  - Verzování API
+  - Monitoring a logování
 
-4. **Monitoring**
-   - Sledujte výkon a chyby
+### 5. Multiplatformní přístup
+- **Nezávislost**
+  - Různé programovací jazyky
+  - Různé operační systémy
+  - Různá zařízení
+- **Kompatibilita**
+  - Webové aplikace
+  - Mobilní aplikace
+  - Desktop aplikace
 
-5. **Cachování**
-   - Implementujte chytré cachování pro lepší výkon
-""")
+### 6. Integrace služeb
+- **Propojení systémů**
+  - Třetí strany
+  - Interní služby
+  - Cloud služby
+- **Automatizace**
+  - Webhooky
+  - Události
+  - Workflow
 
-st.header("Závěr")
-st.write("""
-API je klíčovou technologií moderního softwaru, která umožňuje efektivní propojení různých aplikací a služeb. 
-Díky API můžeme vytvářet modulární, škálovatelné a udržitelné aplikace.
+### 7. Byznys přínosy
+- **Monetizace**
+  - Placený přístup k API
+  - Freemium model
+  - Pay-as-you-go
+- **Partnerství**
+  - B2B integrace
+  - Marketplace
+  - Ekosystém
+
+### 8. Testovatelnost
+- **Kvalita**
+  - Automatické testy
+  - Dokumentované chování
+  - Simulace chyb
+- **Vývoj**
+  - Sandbox prostředí
+  - Mock služby
+  - API testing tools
+
+### 9. Monitoring
+- **Výkonnost**
+  - Metriky
+  - Alerting
+  - Diagnostika
+- **Využití**
+  - Statistiky používání
+  - Analýza trendů
+  - ROI měření
+
+### 10. Inovace
+- **Agilnost**
+  - Rychlé změny
+  - A/B testování
+  - Feature flags
+- **Experimentování**
+  - Prototypování
+  - Beta testing
+  - Zpětná vazba
 """)

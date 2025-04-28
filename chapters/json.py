@@ -1,12 +1,12 @@
 import streamlit as st
 import json
 
-st.title("JSON v Pythonu - Kompletní průvodce")
+st.title("JSON v Pythonu")
 
 st.header("Co je JSON?")
 st.write("""
-JSON (JavaScript Object Notation) je lehký, textový formát pro výměnu dat. Je nezávislý na programovacím jazyce 
-a snadno čitelný jak pro lidi, tak pro počítače [[1]](https://www.datacamp.com/tutorial/json-data-python).
+JSON (JavaScript Object Notation) je lehký, textový formát pro výměnu dat.
+Je nezávislý na programovacím jazyce a snadno čitelný jak pro lidi, tak pro počítače.
 
 Základní charakteristiky:
 - Jednoduchá syntaxe
@@ -49,107 +49,140 @@ python_dict = json.loads(json_string)
 
 st.header("Ukládání a načítání JSON souborů")
 st.code("""
-        #
-        Uložení do souboru
+# Uložení do souboru
 with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, indent=4, ensure_ascii=False)
 
 # Načtení ze souboru
 with open('data.json', 'r', encoding='utf-8') as f:
     loaded_data = json.load(f)
-        """, language="python")
+""", language="python")
 
-st.header("Praktické příklady použití")
-
-st.subheader("1. Konfigurace aplikace")
+st.header("Ukázky formátu JSON")
+st.write("### 1. Základní JSON objekty")
 st.code("""
-# config.json
+# Jednoduchý JSON objekt
 {
-    "database": {
-        "host": "localhost",
-        "port": 5432,
-        "name": "myapp_db"
+    "jméno": "Jan Novák",
+    "věk": 30,
+    "aktivní": true,
+    "výška": 180.5,
+    "email": null
+}
+
+# JSON pole
+[
+    "jablko",
+    "banán",
+    "pomeranč"
+]
+""", language="json")
+
+st.write("### 2. Vnořené struktury")
+st.code("""
+{
+    "osoba": {
+        "jméno": "Jan",
+        "příjmení": "Novák",
+        "adresa": {
+            "ulice": "Hlavní 123",
+            "město": "Praha",
+            "PSČ": "12000"
+        }
     },
-    "api_key": "xxx-xxx-xxx",
-    "debug_mode": true
+    "koníčky": ["sport", "hudba", "čtení"],
+    "kontakty": {
+        "email": ["jan@example.com", "novak@firma.cz"],
+        "telefon": {
+            "osobní": "123456789",
+            "pracovní": "987654321"
+        }
+    }
 }
 """, language="json")
 
-st.subheader("2. API Response")
+st.write("### 3. Pole objektů")
 st.code("""
-# Příklad práce s API odpovědí
-import requests
-
-response = requests.get('https://api.example.com/data')
-json_data = response.json()  # Automatická konverze JSON odpovědi
-""", language="python")
-
-st.header("Tipy a triky")
-st.write("""
-1. **Práce s velkými JSON soubory** [[2]](https://realpython.com/python-json/):
-   ```python
-   import ijson  # Pro velké soubory
-
-   with open('large_file.json', 'rb') as f:
-       parser = ijson.parse(f)
-       for prefix, event, value in parser:
-           # Zpracování dat po částech
-           pass
-   ```
-
-2. **Formátování JSON výstupu:**
-   ```python
-   # Hezky formátovaný výstup
-   json_string = json.dumps(data, 
-                          indent=4, 
-                          sort_keys=True, 
-                          ensure_ascii=False)
-   ```
-
-3. **Ošetření chyb:**
-   ```python
-   try:
-       data = json.loads(json_string)
-   except json.JSONDecodeError as e:
-       print(f"Chyba při parsování JSON: {e}")
-   ```
-""")
-
-st.header("Nejlepší praktiky")
-st.write("""
-✅ Vždy používejte proper encoding (UTF-8)
-✅ Ošetřujte možné chyby při parsování
-✅ Pro velké soubory používejte streamování
-✅ Používejte indent pro čitelnost
-✅ Validujte JSON data před zpracováním
-""")
-
-st.header("Časté problémy a řešení")
-problems = {
-    "Problém s českými znaky": "Použijte ensure_ascii=False",
-    "Velké JSON soubory": "Použijte knihovnu ijson",
-    "Nevalidní JSON": "Použijte online JSON validátor",
-    "Složité vnořené struktury": "Použijte knihovnu jmespath"
+{
+    "zaměstnanci": [
+        {
+            "id": 1,
+            "jméno": "Jan Novák",
+            "pozice": "vývojář",
+            "plat": 50000
+        },
+        {
+            "id": 2,
+            "jméno": "Marie Veselá",
+            "pozice": "designér",
+            "plat": 45000
+        }
+    ]
 }
+""", language="json")
 
-for problem, solution in problems.items():
-    st.write(f"**{problem}:** {solution}")
+st.write("### 4. Konfigurace aplikace")
+st.code("""
+{
+    "databáze": {
+        "host": "localhost",
+        "port": 5432,
+        "název": "moje_db",
+        "přihlášení": {
+            "uživatel": "admin",
+            "heslo": "****"
+        }
+    },
+    "api": {
+        "url": "https://api.example.com",
+        "klíč": "abc123",
+        "timeout": 30
+    },
+    "nastavení": {
+        "debug": true,
+        "cache": {
+            "povoleno": true,
+            "doba_platnosti": 3600
+        }
+    }
+}
+""", language="json")
 
-st.header("Užitečné nástroje")
-st.write("""
-- **jsonlint**: Online validátor JSON
-- **jq**: Nástroj pro práci s JSON v příkazové řádce
-- **jmespath**: Knihovna pro dotazování JSON dat
-- **json.tool**: Vestavěný nástroj Pythonu pro formátování JSON
-""")
-
-# Interaktivní demo
-st.header("Interaktivní JSON validátor")
-user_input = st.text_area("Vložte JSON k validaci:", "{\"příklad\": \"data\"}")
-if st.button("Validovat"):
-    try:
-        parsed = json.loads(user_input)
-        st.success("JSON je validní!")
-        st.json(parsed)
-    except json.JSONDecodeError as e:
-        st.error(f"Nevalidní JSON: {str(e)}")
+st.write("### 5. API Response")
+st.code("""
+{
+    "status": "success",
+    "code": 200,
+    "data": {
+        "produkty": [
+            {
+                "id": "p123",
+                "název": "Notebook",
+                "cena": 25000,
+                "skladem": true,
+                "specifikace": {
+                    "procesor": "Intel i5",
+                    "ram": "8GB",
+                    "disk": "512GB SSD"
+                }
+            },
+            {
+                "id": "p124",
+                "název": "Myš",
+                "cena": 599,
+                "skladem": false,
+                "specifikace": {
+                    "typ": "bezdrátová",
+                    "dpi": 1600,
+                    "barva": "černá"
+                }
+            }
+        ],
+        "metadata": {
+            "celkem": 2,
+            "stránka": 1,
+            "limit": 10
+        }
+    }
+}
+""", language="json")

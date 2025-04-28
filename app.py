@@ -29,10 +29,45 @@ json = st.Page(
     title="JavaScript Object Notation",
     icon=":material/counter_1:")
 
+json_vs_python = st.Page(
+    "chapters/json_vs_python.py",
+    title="JSON vs. Python",
+    icon=":material/counter_2:")
+
+api = st.Page(
+    "chapters/api.py",
+    title="Základy REST API",
+    icon=":material/counter_3:")
+
+api_examples = st.Page(
+    "chapters/api_examples.py",
+    title="Příklady API",
+    icon=":material/counter_4:")
+
+api_python = st.Page(
+    "chapters/api_python.py",
+    title="REST API v Pythonu",
+    icon=":material/counter_5:")
+
+api_key = st.Page(
+    "chapters/api_key.py",
+    title="Klíč API",
+    icon=":material/counter_6:")
+
+assignments = st.Page(
+    "chapters/assignments.py",
+    title="Cvičení",
+    icon=":material/counter_7:")
 
 page_dict = {'Kapitoly': [
     introduction,
-    json
+    json,
+    json_vs_python,
+    api,
+    api_examples,
+    api_python,
+    api_key,
+    assignments
 ]}
 
 home_page = st.Page(home, title="O kurzu", icon=":material/info:")

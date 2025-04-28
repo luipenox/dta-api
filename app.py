@@ -4,6 +4,12 @@ import streamlit as st
 def home():
     st.title('API')
 
+def tools():
+    st.title("Užitečné nástroje")
+    st.write(
+        "[JSONParser](https://jsonparser.org/) - online JSON parser")
+    st.write(
+        "[REQBIN](https://reqbin.com/) - online nástroj na testování API")
 
 def contact():
     st.title('Kontaktní informace')
@@ -71,9 +77,10 @@ page_dict = {'Kapitoly': [
 ]}
 
 home_page = st.Page(home, title="O kurzu", icon=":material/info:")
+tools_page = st.Page(tools, title="Užitečné nástroje", icon=":material/favorite:")
 contact_page = st.Page(contact, title="Kontakt", icon=":material/import_contacts:")
 
-account_pages = [home_page, contact_page]
+account_pages = [home_page, tools_page, contact_page]
 
 pg = st.navigation({"Informace": account_pages} | page_dict)
 pg.run()
